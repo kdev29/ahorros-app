@@ -1,0 +1,20 @@
+<div style="margin-top: 50px;" *ngIf="movimiento">
+  <form (submit)="editar()">
+    <label>Monto</label>
+    <input [(ngModel)]="movimiento.monto" type="text" name="monto" id=""> <br>
+    <label>Fecha</label>
+    <input [(ngModel)]="movimiento.fecha" type="text" name="fecha" id=""> <br>
+    <label>Comentario</label>
+    <input [(ngModel)]="movimiento.comentario" type="text" name="comentario" id="">
+<br>
+<br>
+    <button class="btn btn-primary">Editar</button>
+  </form>
+</div>
+
+<div *ngIf="display == true">
+
+  <div class="alert alert-success" role="alert">
+      {{mensaje}}
+  </div>
+</div>
