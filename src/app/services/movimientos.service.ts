@@ -11,10 +11,10 @@ import { switchMap, filter, map, concatAll } from 'rxjs/operators';
 })
 export class MovimientosService implements IMovimientosService {
 
-  // url: string = "https://gastos.gearhostpreview.com";
-  //  url: string = "https://hobbygastos.tk";
+  //url: string = "https://gastos.gearhostpreview.com";
+  url: string = "https://hobbygastos.tk";
   
-  url: string = "http://192.168.100.15:8012";//"http://localhost:8012";
+  //url: string = "http://192.168.100.15:8012";//"http://localhost:8012";
 
   constructor(private http: HttpClient) { }
 

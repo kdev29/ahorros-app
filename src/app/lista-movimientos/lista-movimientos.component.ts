@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovimientosService } from '../services/movimientos.service';
 import { MovimientoAhorro } from '../services/movimiento';
 import { MovimientosMockService } from '../services/movimientos-mock.service';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lista-movimientos',
@@ -17,12 +17,12 @@ export class ListaMovimientosComponent implements OnInit {
   name: string = 'abc';
   
 
-  constructor(private movimientosService: MovimientosService) { }
+  constructor(private movimientosService: MovimientosService, private router: Router) { }
   // constructor(private movimientosService: MovimientosService, private router: Route, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-    
+    this.verificarLogin();
     
     this.movimientosService.consultaMovimientos().subscribe(movs =>{
       this.movimientos = movs;
@@ -37,6 +37,13 @@ export class ListaMovimientosComponent implements OnInit {
   onTipoMovimientoChanged(){
     console.log('changed!');
     console.log(this.movimiento.tipo);
+  }
+
+  verificarLogin(){
+    if (sessionStorage.getItem('uuid') == undefined)
+    {
+      this.router.navigate(['login']);
+    }
   }
 
   guardar(){

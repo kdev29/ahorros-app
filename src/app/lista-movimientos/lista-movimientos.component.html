@@ -19,7 +19,7 @@
 
         <td><a>{{movimiento.idMovimiento}}</a></td>
             <td>{{movimiento.cuenta}}</td>
-                <td>{{movimiento.tipo}}</td>
+                <td [ngClass]="{'blue': movimiento.tipo == 'ahorro', 'red': movimiento.tipo == 'gasto'}">{{movimiento.tipo}}</td>
                     <td>{{movimiento.monto | currency}}</td>
                         <td>{{movimiento.fecha}}</td>
                             <td>{{movimiento.comentario}}</td>
@@ -65,7 +65,7 @@
   <div class="panel-body">
     <form (submit)="guardar()">
 
-      Monto: {{movimiento.monto}} <br>
+      Monto: {{movimiento.monto | currency}} <br>
       Cuenta: {{movimiento.cuenta}} <br>
       TipoMovimiento: {{movimiento.tipo}} <br>
       Comentario: {{movimiento.comentario}} <br>

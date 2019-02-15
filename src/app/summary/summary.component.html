@@ -1,0 +1,15 @@
+<br>
+ 
+
+  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Summary</h3>
+      </div>
+      <div class="panel-body">
+          <div>
+              Ahorros: {{sumaAhorros | currency}}
+              Gastos: {{sumaGastos | currency}}
+              Total: {{ (sumaAhorros - sumaGastos) | currency }}
+            </div>
+      </div>
+    </div>
