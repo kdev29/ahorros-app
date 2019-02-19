@@ -18,8 +18,7 @@ export class ListaMovimientosComponent implements OnInit {
   
 
   constructor(private movimientosService: MovimientosService, private router: Router) { }
-  // constructor(private movimientosService: MovimientosService, private router: Route, private route: ActivatedRoute) { }
-
+  
   ngOnInit() {
 
     this.verificarLogin();
