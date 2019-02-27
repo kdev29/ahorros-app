@@ -1,0 +1,14 @@
+﻿{
+  "name": "Ahorros",
+  "short_name": "Ahorros",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "Images/fitness.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#1f56af",
+  "theme_color": "#1f56af"
+}

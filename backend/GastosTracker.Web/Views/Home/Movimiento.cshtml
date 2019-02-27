@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Movimiento";
+}
+
+<h2>Movimiento @ViewBag.Id</h2>
+
+<input type="hidden" value="@ViewBag.Id" id="hdnMovimientoID" />
+
+
+
+<form>
+    
+    <input type="hidden" value="@ViewBag.Id" name="idMovimiento" />
+    <label>Monto</label>
+    <input type="text" id="txtMonto" />
+
+    <div>
+
+    <label>Fecha</label>
+    <input type="text" id="txtFecha" />
+    </div>
+
+    <label>Comentario</label>
+    <input type="text" id="txtComentario" />
+    <br />
+
+    <input type="button" value="Editar" onclick="edit()" />
+
+</form>
+
+@section scripts{
+
+<script>
+
+    var movimiento = {};
+
+    console.log('hi');
+
+    var id = document.getElementById('hdnMovimientoID').value;
+
+    $.get('/api/movimientos/' + id).done(function (d) {
+        console.log(d);
+
+        $('#txtMonto').val(d.monto);
+        $('#txtFecha').val(d.fecha);
+        $('#txtComentario').val(d.comentario);
+
+        movimiento = d;
+    });
+
+    function edit() {
+
+        movimiento.monto = $('#txtMonto').val();
+        movimiento.fecha = $('#txtFecha').val();
+        movimiento.comentario = $('#txtComentario').val();
+
+        $.ajax({
+            url: '/api/edit',
+            data: movimiento,
+            method: 'POST'
+        })
+            .done(function (d) {
+                console.log('ok -> ' + d);
+                alert('Editado');
+            })
+            .fail(function (d) {
+                console.log('ok -> ' + d);
+                alert('Algo fallo');
+            });
+    }
+
+</script>
+
+
+    
+}
