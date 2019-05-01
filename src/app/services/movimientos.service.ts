@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { MovimientoAhorro, MovimientosMock, IMovimientosService } from './movimiento';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, from } from 'rxjs';
-import { switchMap, filter, map, concatAll } from 'rxjs/operators';
-
+import { switchMap, filter, map, concatAll, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -11,18 +11,30 @@ import { switchMap, filter, map, concatAll } from 'rxjs/operators';
 })
 export class MovimientosService implements IMovimientosService {
 
-  //url: string = "https://gastos.gearhostpreview.com";
-  url: string = "https://hobbygastos.tk";
-  
-  //url: string = "http://192.168.100.15:8012";//"http://localhost:8012";
+  url: string;
+  movimientos: MovimientoAhorro[];
 
-  constructor(private http: HttpClient) { }
 
-  consultaMovimientos(): Observable<Array<MovimientoAhorro>>{    
-    return this.http.get<Array<MovimientoAhorro>>(this.url + "/api/movimientos");  
+  constructor(private http: HttpClient) {
+    this.url = environment.ahorrosAPI;
+    console.log('this.url', this.url);
   }
 
-  guardaMovimiento(movimiento: MovimientoAhorro){
+  consultaMovimientos(): Observable<Array<MovimientoAhorro>> {
+
+    if (this.movimientos) {
+      console.log('returning from cache');
+      return of(this.movimientos);
+    }
+    else {
+
+      return this.http.get<Array<MovimientoAhorro>>(this.url + '/api/movimientos').pipe(
+        tap( movs => { this.movimientos = movs; })
+      );
+    }
+  }
+
+  guardaMovimiento(movimiento: MovimientoAhorro) {
     return this.http.post(this.url + '/api/movimientos/save', movimiento);
   }
 
@@ -31,22 +43,17 @@ export class MovimientosService implements IMovimientosService {
     let mov: MovimientoAhorro;
 
     let movs = this.consultaMovimientos();
-     
+
     return movs.pipe(map(mvmnts => {
         const filtered: MovimientoAhorro[] = [];
 
-        // mvmnts.forEach(m =>{
-        //     if(m.idMovimiento == id)
-        //       filtered.push(m);
-        // });
-        
         filtered.push(mvmnts.find(m => {
           return m.idMovimiento == id;
         }));
-        
+
         return filtered;
     }));
-    
+
 
   }
 

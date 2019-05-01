@@ -1,76 +1,26 @@
-
-
 <div  class="table-responsive">
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Cuenta</th>
-        <th>Tipo</th>
-        <th>Monto</th>
-        <th>Fecha</th>
-        <th>Comentario</th>
+  <table class="table">
+      <thead>
+      <tr>
+          <th>Id</th>
+          <th>Cuenta</th>
+          <th>Tipo</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movimiento of movimientos" class='selectable' [routerLink]="['/edit',movimiento.idMovimiento]"   >
+          <td><a>{{movimiento.idMovimiento}}</a></td>
+          <td>{{movimiento.cuenta}}</td>
+          <td [ngClass]="{'blue': movimiento.tipo == 'ahorro', 'red': movimiento.tipo == 'gasto'}">{{movimiento.tipo}}</td>
+          <td>{{movimiento.monto | currency}}</td>
+          <td>{{movimiento.fecha}}</td>
+          <td>{{movimiento.comentario}}</td>
         </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let movimiento of movimientos" class='selectable' [routerLink]="['/edit',movimiento.idMovimiento]"   >
-        
 
-        <td><a>{{movimiento.idMovimiento}}</a></td>
-            <td>{{movimiento.cuenta}}</td>
-                <td [ngClass]="{'blue': movimiento.tipo == 'ahorro', 'red': movimiento.tipo == 'gasto'}">{{movimiento.tipo}}</td>
-                    <td>{{movimiento.monto | currency}}</td>
-                        <td>{{movimiento.fecha}}</td>
-                            <td>{{movimiento.comentario}}</td>
-      </tr>
-        
-    </tbody>
-</table>
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Nuevo movimiento</h3>
-  </div>
-  <div class="panel-body">
-    
-    <div>
-      <label for="TipoMovimiento">Tipo de movimiento</label>
-      <select id='TipoMovimiento' [(ngModel)]="movimiento.tipo" (change)="onTipoMovimientoChanged()" >
-        <option value="ahorro">Ahorro</option>
-        <option value="gasto">Gasto</option>
-      </select>
-      <br>
-      <label>Monto:</label> <input type="text"   placeholder="monto" [(ngModel)]="movimiento.monto" /> <br>
-      <label>Comentario:</label> <input [(ngModel)]="movimiento.comentario" placeholder="comentario" type="text">
-    </div>
-    
-    <div>
-      <label>
-        Banamex
-      </label>
-      <input  [(ngModel)]="movimiento.cuenta" type="radio" value="Banamex" name="cuenta"/>
-      <label>
-          BAZ
-        </label>
-        <input [(ngModel)]="movimiento.cuenta" type="radio" value="BAZ Retenciones" name="cuenta"/>
-    </div>
-  </div>
+      </tbody>
+  </table>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Preview</h3>
-  </div>
-  <div class="panel-body">
-    <form (submit)="guardar()">
-
-      Monto: {{movimiento.monto | currency}} <br>
-      Cuenta: {{movimiento.cuenta}} <br>
-      TipoMovimiento: {{movimiento.tipo}} <br>
-      Comentario: {{movimiento.comentario}} <br>
-    
-      <button class="btn btn-primary">Guardar</button>
-    </form>
-  </div>
-</div>

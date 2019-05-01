@@ -1,0 +1,85 @@
+<div class="container">
+  <h2>Nuevo movimiento</h2>
+
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="form-group">
+      <label for="TipoMovimiento">Tipo de movimiento</label>
+    <select
+      class="form-control"
+      id='TipoMovimiento'
+      [(ngModel)]="movimiento.tipo"
+      name="tipo"
+      >
+      <option value="ahorro">Ahorro</option>
+      <option value="gasto">Gasto</option>
+    </select>
+    </div>
+
+    <div class="form-group"
+      [ngClass]="{'has-error': txtMonto.invalid && txtMonto.touched, 'has-feedback': txtMonto.invalid && txtMonto.touched}">
+      <label class="control.label" for="">Monto</label>
+      <input
+      #txtMonto="ngModel"
+      type="number"
+      min="1"
+      required
+      [(ngModel)]="movimiento.monto" name="monto" id="" class="form-control">
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      <div [style.display]="(txtMonto.invalid && txtMonto.touched) ? 'block' : 'none'" class="invalid-feedback">
+        Especificar monto
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': txtComentario.invalid && txtComentario.touched, 'has-feedback': txtComentario.invalid && txtComentario.touched}">
+      <label for="">Comentario</label>
+      <input
+        #txtComentario="ngModel"
+        type="text"
+        required
+        [(ngModel)]="movimiento.comentario"
+        name="comentario"
+        id=""
+        class="form-control">
+      <div [style.display]="(txtComentario.invalid && txtComentario.touched) ? 'block' : 'none'" class="invalid-feedback">
+        Especificar el comentario
+      </div>
+    </div>
+
+
+
+    <div class="radio">
+      <label  >
+
+        <input
+          [(ngModel)]="movimiento.cuenta"
+          type="radio"
+          value="Banamex"
+          required
+          name="cuenta"/>
+          Banamex
+      </label>
+
+    </div>
+
+    <div class="radio">
+      <label >
+
+        <input
+
+        [(ngModel)]="movimiento.cuenta"
+        type="radio"
+        value="BAZ Retenciones"
+        name="cuenta"
+        required
+       />
+       BAZ Retenciones
+      </label>
+    </div>
+
+
+    <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Guardar</button>
+  </form>
+  <br />
+
+  <div *ngIf="mostrarMensaje" class="alert" [ngClass]="!error ? 'alert-success' : 'alert-danger'" role="alert">{{mensaje}}</div>
+</div>

@@ -7,7 +7,7 @@ import { MovimientosService } from '../services/movimientos.service';
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css'],
-  providers: [{ provide: MovimientosService, useClass: MovimientosService }]
+  providers: [{ provide: MovimientosService, useClass: MovimientosMockService }]
 })
 export class SummaryComponent implements OnInit {
 

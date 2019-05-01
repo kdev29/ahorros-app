@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
+
             <a [routerLink]="'/'" class="navbar-brand">Home</a>
             <!-- <a [routerLink]="'/'" class="nav-link">Summary</a> -->
         </div>
@@ -15,7 +15,9 @@
                         <li>
                           <a [routerLink]="'/summary'">Summary </a>
                         </li>
-                      
+                        <li><a [routerLink]="['/addMovimiento']">Nuevo movimiento</a></li>
+                        <li><a [routerLink]="['/inversiones']">Inversiones</a></li>
+
                       </ul>
         </div>
     </div>
@@ -24,11 +26,11 @@
   <div class="container main">
 
       <router-outlet></router-outlet>
-      
+
   </div>
     <hr />
     <footer>
-           
+
     </footer>
 </div>
 

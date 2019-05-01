@@ -25,7 +25,8 @@
               "src/sw.js",
               "src/manifest.json",
               "src/manifest.txt",
-              "src/images/"          
+              "src/images/",
+              "src/appSettings.json"          
             ],
             "styles": [
               "src/styles.css"

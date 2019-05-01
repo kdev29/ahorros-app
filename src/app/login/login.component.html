@@ -4,9 +4,11 @@
     <h3 class="panel-title">Access</h3>
   </div>
   <div class="panel-body">
-      <input #txtLogin type="text" name="login" id="login" placeholder="login data">
+      <input autocomplete="off" #txtLogin type="text" name="login" (keyup)="onKeyUp($event, txtLogin)" id="login" placeholder="login data">
       <br>
       <br>
-      <button #btnLogin class='btn btn-info' (click)="login(txtLogin)">Login</button>
+      <button #btnLogin class='btn btn-info' (click)="login()">Login</button>
+      <br>
+      <br>
   </div>
 </div>

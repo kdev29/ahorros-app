@@ -8,6 +8,8 @@ import { ListaMovimientosComponent } from './lista-movimientos/lista-movimientos
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
 import { SummaryComponent } from './summary/summary.component';
+import { AltaMovimientoComponent } from './alta-movimiento/alta-movimiento.component';
+import { InversionesComponent } from './inversiones/inversiones.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { SummaryComponent } from './summary/summary.component';
     ListaMovimientosComponent,
     EditComponent,
     LoginComponent,
-    SummaryComponent
+    SummaryComponent,
+    AltaMovimientoComponent,
+    InversionesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

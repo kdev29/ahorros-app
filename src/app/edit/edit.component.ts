@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private service: MovimientosService) { }
 
   ngOnInit() {
-    
+
     this.route.params.subscribe((params: Params) => {
       this.movimientoId = params["movimiento_id"];
     });
