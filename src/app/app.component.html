@@ -7,25 +7,26 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a [routerLink]="'/'" class="navbar-brand">Home</a>
+            <a  routerLinkActive="active" [routerLink]="'/'" class="navbar-brand">Home</a>
             <!-- <a [routerLink]="'/'" class="nav-link">Summary</a> -->
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" *ngIf="showLinks">
                 <ul class="nav navbar-nav">
-                        <li>
+                        <li routerLinkActive="active">
                           <a [routerLink]="'/summary'">Summary </a>
                         </li>
-                        <li><a [routerLink]="['/addMovimiento']">Nuevo movimiento</a></li>
-                        <li><a [routerLink]="['/inversiones']">Inversiones</a></li>
+                        <li  routerLinkActive="active"><a [routerLink]="['/addMovimiento']">Nuevo movimiento</a></li>
+                        <li  routerLinkActive="active"><a [routerLink]="['/inversiones']">Inversiones</a></li>
 
                       </ul>
         </div>
     </div>
 </div>
 <div class="container body-content">
+  <!-- <div class="container main" [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''"> -->
   <div class="container main">
 
-      <router-outlet></router-outlet>
+      <router-outlet #o="outlet"></router-outlet>
 
   </div>
     <hr />

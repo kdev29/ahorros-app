@@ -22,5 +22,8 @@
 
       </tbody>
   </table>
+  <div class="alert alert-danger" *ngIf="error">
+    {{errorMessage.message}}
+  </div>
 </div>
 

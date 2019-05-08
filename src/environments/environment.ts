@@ -7,7 +7,7 @@ export const environment = {
   ahorrosAPI: "http://192.168.100.15:8012"
 };
 
-  
+
 
 /*
  * For easier debugging in development mode, you can import the following file
