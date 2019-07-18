@@ -43,5 +43,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-#temporal backend
-/backend
+
+/serverless/AddAhorro/src/AddAhorro/.vs
+/serverless/ConsultaMovimientos/src/ConsultaMovimientos/.vs
+/serverless/ConsultaMovimientosUnitario/src/ConsultaMovimientosUnitario/.vs
+
