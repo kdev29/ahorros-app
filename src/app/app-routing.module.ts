@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: ListaMovimientosComponent, resolve: { movimientos: MovimientosResolver }},
   { path: 'summary', component: SummaryComponent},
-  { path: 'edit/:movimiento_id', component: EditComponent },
+  { path: 'edit/:movimiento_id/:cuenta', component: EditComponent },
   { path: 'addMovimiento', component: AltaMovimientoComponent },
   { path: 'inversiones', component:  InversionesComponent }
 ];

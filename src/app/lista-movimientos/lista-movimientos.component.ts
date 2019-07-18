@@ -27,12 +27,6 @@ export class ListaMovimientosComponent implements OnInit {
 
     this.verificarLogin();
 
-    // this.movimientosService.consultaMovimientos().subscribe(movs => {
-    //   this.movimientos = movs;
-    // }, (error) => {
-    //   alert('Error: ' + error.message)
-    // });
-
     const movimientosResolved = <MovimientosResolved>this.route.snapshot.data['movimientos'];
     this.movimientos = movimientosResolved.movimientos;
     this.error = movimientosResolved.error;

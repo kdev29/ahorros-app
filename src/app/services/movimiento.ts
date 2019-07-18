@@ -26,3 +26,25 @@ export interface IMovimientosService{
   consultaMovimiento(id: number): Observable<MovimientoAhorro[]>;
   editaMovimiento(movimiento: MovimientoAhorro): Observable<Object>;
 }
+
+export interface AWSResponse {
+  statusCode: number;
+  headers: [];
+  multiValueHeaders: string;
+  body: string;
+  isBase64Encoded: boolean;
+}
+
+export class MovimientoAWS {
+  Comentario: string;
+Cuenta: string;
+Fecha: string;
+Monto: number;
+MovimientoID: number;
+TipoMovimiento: string;
+}
+
+export interface AWSAddResponse {
+  Codigo: number,
+  Mensaje: string
+}

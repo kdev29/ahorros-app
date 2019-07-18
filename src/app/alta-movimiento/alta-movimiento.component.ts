@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovimientoAhorro } from '../services/movimiento';
+import { MovimientoAhorro, MovimientoAWS } from '../services/movimiento';
 import { NgForm } from '@angular/forms';
 import { MovimientosService } from '../services/movimientos.service';
 
@@ -23,11 +23,23 @@ export class AltaMovimientoComponent implements OnInit {
   onSubmit(form: NgForm) {
 
     if (form.valid) {
-      this.movimientosService.guardaMovimiento(this.movimiento).subscribe(result => {
+
+      const movimientoAWS: MovimientoAWS = {
+        Comentario: this.movimiento.comentario,
+        Cuenta: this.movimiento.cuenta,
+        Fecha: this.movimiento.fecha,
+        Monto: this.movimiento.monto,
+        MovimientoID: 0,
+        TipoMovimiento: this.movimiento.tipo
+      };
+
+      this.movimientosService.guardaMovimientoAWS(movimientoAWS).subscribe(result => {
         console.log(result);
         this.error = false;
         this.mostrarMensaje = true;
         this.mensaje = 'Finalizado';
+        
+        this.movimientosService.setMovimientosCache(null);
       }, error => {
         this.error = true;
         this.mostrarMensaje = true;

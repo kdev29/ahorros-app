@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, AfterContentChecked } from '@angular/core';
 import { ConfigService } from './services/config.service'
 import { slideInAnimation } from './app-animations';
 import { AuthenticationService } from './services/authentication.service';
 import { Router, Event } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -11,27 +12,18 @@ import { Router, Event } from '@angular/router';
   styleUrls: ['./app.component.css'],
   animations: [slideInAnimation]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked  {
+  
   title = 'ahorrosApp';
-  showLinks = false;
+  showLinks = false; 
 
-  constructor(private service: ConfigService, private auth: AuthenticationService, private router: Router) { }
+  constructor(private service: ConfigService, public auth: AuthenticationService, private router: Router, private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-    const isAuthenticated = this.auth.verificarLogin();
-
-    if (isAuthenticated) {
-      this.showLinks = true;
-    }
-
-    this.router.events.subscribe((event: Event) => {
-      console.log(event)
-    });
-
-    // this.service.loadConfig().subscribe(data => {
-    //   console.log('cargando configuracion...');
-    //   console.log(data);
-    // });
+  ngAfterContentChecked(): void {    
+    this.cd.detectChanges();
   }
+
+  
 }

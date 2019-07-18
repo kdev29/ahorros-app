@@ -1,17 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ChangeDetectorRef } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  showLinks: boolean;
+  
   constructor() { }
 
   /**
   * Verifica si hay usuario autenticado
   */
   verificarLogin(): boolean {
-    return  sessionStorage.getItem('uuid') !== undefined;
-  }
+
+    this.showLinks = !!(sessionStorage.getItem('uuid'));
+
+    return this.showLinks;
+  }  
 
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { sha256, sha224 } from 'js-sha256';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debugOutputAstAsTypeScript } from '@angular/compiler';
+
 
 const auth = '1342aee5f2251c21dfe96448c941ea4f4c0c4b0c157e4dc7c48263429380c5f4';
 const KEY_ENTER = 13;
@@ -14,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   accessKey = '';
   encryptedKey = '';
+  @Output() authenticateChanged = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
     if (auth == this.encryptedKey)
     {
       sessionStorage.setItem('uuid', this.encryptedKey);
+      this.authenticateChanged.emit(this.isAuthenticated());
       this.router.navigate(['home']);
     }
 

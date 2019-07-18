@@ -2,9 +2,20 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   ahorrosAPI: "http://192.168.100.15:8012",
+//   getAllAWS: "https://600c3ec3-524e-404e-bbd6-84d0c27f482e.mock.pstmn.io/getall",
+//   getSingleAWS :"https://600c3ec3-524e-404e-bbd6-84d0c27f482e.mock.pstmn.io/",
+//   guardarMovimientoAWS: 'https://7zoaxsx211.execute-api.us-east-1.amazonaws.com/DEV'
+// };
+
 export const environment = {
   production: false,
-  ahorrosAPI: "http://192.168.100.15:8012"
+  ahorrosAPI: "http://192.168.100.15:8012",
+  getAllAWS: "https://600c3ec3-524e-404e-bbd6-84d0c27f482e.mock.pstmn.io/getall",
+  getSingleAWS :"https://600c3ec3-524e-404e-bbd6-84d0c27f482e.mock.pstmn.io/",
+  guardarMovimientoAWS: 'https://7zoaxsx211.execute-api.us-east-1.amazonaws.com/DEV'
 };
 
 

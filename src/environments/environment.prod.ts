@@ -1,8 +1,9 @@
 export const environment = {
   production: true,
-  ahorrosAPI: "https://hobbygastos.tk"
-  // ,ahorrosAPI: "https://gastos.gearhostpreview.com"
+  ahorrosAPI: "https://hobbygastos.tk",
+  getAllAWS: "https://7zoaxsx211.execute-api.us-east-1.amazonaws.com/DEV",
+  getSingleAWS :"https://eocju0r8s2.execute-api.us-east-1.amazonaws.com/",
+  guardarMovimientoAWS: 'https://7zoaxsx211.execute-api.us-east-1.amazonaws.com/DEV'
 };
 
   
-//url: string = "http://192.168.100.15:8012";//"http://localhost:8012";

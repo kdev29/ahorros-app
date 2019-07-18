@@ -11,7 +11,7 @@
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let movimiento of movimientos" class='selectable' [routerLink]="['/edit',movimiento.idMovimiento]"   >
+        <tr *ngFor="let movimiento of movimientos" class='selectable' [routerLink]="['/edit',movimiento.idMovimiento, movimiento.cuenta]"   >
           <td><a>{{movimiento.idMovimiento}}</a></td>
           <td>{{movimiento.cuenta}}</td>
           <td [ngClass]="{'blue': movimiento.tipo == 'ahorro', 'red': movimiento.tipo == 'gasto'}">{{movimiento.tipo}}</td>

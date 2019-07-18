@@ -46,34 +46,14 @@
     </div>
 
 
-
-    <div class="radio">
-      <label  >
-
-        <input
-          [(ngModel)]="movimiento.cuenta"
-          type="radio"
-          value="Banamex"
-          required
-          name="cuenta"/>
-          Banamex
-      </label>
-
-    </div>
-
-    <div class="radio">
-      <label >
-
-        <input
-
-        [(ngModel)]="movimiento.cuenta"
-        type="radio"
-        value="BAZ Retenciones"
-        name="cuenta"
-        required
-       />
-       BAZ Retenciones
-      </label>
+    <div class='form-group'>
+      <label for>Cuenta</label>
+      <select class="form-control" id="cuenta" name="cuenta" [(ngModel)]="movimiento.cuenta">
+        <option value="BAZ Retenciones">BAZ Retenciones</option>
+        <option value="Banamex">BANAMEX</option>
+        <option value="Afore">AFORE</option>
+        <option value="Fondo de ahorro">Fondo de ahorro</option>
+      </select>
     </div>
 
 
@@ -83,3 +63,4 @@
 
   <div *ngIf="mostrarMensaje" class="alert" [ngClass]="!error ? 'alert-success' : 'alert-danger'" role="alert">{{mensaje}}</div>
 </div>
+

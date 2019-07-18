@@ -10,7 +10,7 @@
             <a  routerLinkActive="active" [routerLink]="'/'" class="navbar-brand">Home</a>
             <!-- <a [routerLink]="'/'" class="nav-link">Summary</a> -->
         </div>
-        <div class="navbar-collapse collapse" *ngIf="showLinks">
+        <div class="navbar-collapse collapse" *ngIf="auth.showLinks">
                 <ul class="nav navbar-nav">
                         <li routerLinkActive="active">
                           <a [routerLink]="'/summary'">Summary </a>
@@ -34,6 +34,7 @@
 
     </footer>
 </div>
+
 
 
 
