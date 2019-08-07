@@ -34,11 +34,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - save_cache:
+            key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+            paths:
+                - dist
   deploy:
     docker:
       - image: circleci/node:9.0
     working_directory: ~/repo
     steps:
+      - restore_cache:
+                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Install PIP
           command: sudo apt-get install python-pip python-dev
