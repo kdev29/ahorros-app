@@ -38,6 +38,12 @@ jobs:
     working_directory: ~/repo
     steps:
       - run:
+          name: Install python
+          command: sudo apt-get install python-dev
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
           name: Deploy to S3
           command: aws s3 sync ahorros-app/e2e s3://kdev-ahorrosapp/docs/ --delete
 workflows:
