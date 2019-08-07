@@ -32,17 +32,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-   deploy:
-      docker:
-        - image: circleci/node:7.10
-      working_directory: ~/repo
-      steps:
-        - run:
-            name: Install awscli
-            command: sudo pip install awscli
-        - run:
-            name: Deploy to S3
-            command: aws s3 sync ahorros-app/e2e s3://kdev-ahorrosapp/docs/ --delete
+  deploy:
+    docker:
+      - image: circleci/node:7.10
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync ahorros-app/e2e s3://kdev-ahorrosapp/docs/ --delete
 workflows:
   version: 2
   build-deploy:
