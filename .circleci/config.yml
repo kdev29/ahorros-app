@@ -27,7 +27,9 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-
+      - run:
+          name: build
+          command: ng build --prod
       - save_cache:
           paths:
             - node_modules
@@ -45,7 +47,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync ~/repo/e2e s3://kdev-ahorrosapp/docs/ --delete
+          command: aws s3 sync dist s3://kdev-ahorrosapp/docs/ --delete
 workflows:
   version: 2
   build-deploy:
