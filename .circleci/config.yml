@@ -29,7 +29,7 @@ jobs:
       - run: npm install
       - run:
           name: build
-          command: ng build --prod
+          command: npm run build
       - save_cache:
           paths:
             - node_modules
