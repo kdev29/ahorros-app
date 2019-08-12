@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MovimientoAhorro, MovimientoAWS } from '../services/movimiento';
 import { NgForm } from '@angular/forms';
 import { MovimientosService } from '../services/movimientos.service';
+import { cuenta } from '../models/cuenta-model';
+import { CatalogsService } from '../services/catalogs.service';
 
 @Component({
   selector: 'app-alta-movimiento',
@@ -14,10 +16,14 @@ export class AltaMovimientoComponent implements OnInit {
   mostrarMensaje = false;
   mensaje: string;
   error: boolean = false;
+  cuentas: string[] = [];
 
-  constructor(private movimientosService: MovimientosService) { }
+  constructor(private movimientosService: MovimientosService, private catalogs: CatalogsService) { }
 
   ngOnInit() {
+    this.catalogs.consultaTiposCuenta().subscribe(ctas => {
+      this.cuentas = ctas.cuentas;
+    });
   }
 
   onSubmit(form: NgForm) {

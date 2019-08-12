@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { SummaryComponent } from './summary/summary.component';
 import { AltaMovimientoComponent } from './alta-movimiento/alta-movimiento.component';
 import { InversionesComponent } from './inversiones/inversiones.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { InversionesComponent } from './inversiones/inversiones.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
