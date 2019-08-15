@@ -53,7 +53,7 @@
         <option value="Banamex">BANAMEX</option>
         <option value="Afore">AFORE</option>
         <option value="Fondo de ahorro">Fondo de ahorro</option> -->
-        <option *ngFor="let cuenta of cuentas" value="cuenta">{{ cuenta }}</option>
+        <option *ngFor="let cuenta of cuentas" [value]="cuenta">{{ cuenta }}</option>
       </select>
     </div>
 
