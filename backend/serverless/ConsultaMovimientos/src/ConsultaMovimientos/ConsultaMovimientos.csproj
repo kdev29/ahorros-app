@@ -8,7 +8,7 @@
     <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="1.2.0" />
     <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.5.0" />
-    <PackageReference Include="awssdk.dynamodbv2" Version="3.3.101.37" />
+    <PackageReference Include="awssdk.dynamodbv2" Version="3.3.104.26" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -48,3 +48,10 @@ Thumbs.db
 /serverless/ConsultaMovimientos/src/ConsultaMovimientos/.vs
 /serverless/ConsultaMovimientosUnitario/src/ConsultaMovimientosUnitario/.vs
 
+backend/serverless/ConsultaMovimientos/src/ConsultaMovimientos/obj/
+backend/serverless/ConsultaMovimientos/src/ConsultaMovimientos/.vs/
+backend/serverless/ConsultaMovimientos/src/ConsultaMovimientos/bin/
+backend/GastosTracker.Web/obj/
+backend/serverless/AddAhorro/src/AddAhorro/.vs/
+backend/serverless/AddAhorro/src/AddAhorro/obj/
+backend/serverless/AddAhorro/src/AddAhorro/.vs/

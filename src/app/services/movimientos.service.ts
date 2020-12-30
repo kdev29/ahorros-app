@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { MovimientoAhorro, MovimientosMock, IMovimientosService, AWSResponse, MovimientoAWS, AWSAddResponse } from './movimiento';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, from } from 'rxjs';
-import { switchMap, filter, map, concatAll, tap } from 'rxjs/operators';
+import { switchMap, filter, map, concatAll, tap, flatMap, mergeMap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { AuthenticationService } from './authentication.service';
+
 
 
 @Injectable({
@@ -15,7 +17,7 @@ export class MovimientosService implements IMovimientosService {
   movimientos: MovimientoAhorro[];
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthenticationService) {
     this.url = environment.ahorrosAPI;
     console.log('this.url', this.url);
   }
@@ -37,11 +39,14 @@ export class MovimientosService implements IMovimientosService {
   }
 
   guardaMovimientoAWS(movimiento: MovimientoAWS): Observable<AWSAddResponse> {     
-     var endpoint = environment.guardarMovimientoAWS;
+     var endpoint = environment.guardarMovimientoAWS;     
+     const $token = this.auth.getJWTToken({Issuer:"http://angular-app.com", SecretKey:"151515599211D2345"});
 
-     console.warn('guardando en endpoint ',endpoint);
+     const result = $token.pipe(
+      mergeMap(token => this.http.post<AWSAddResponse>(endpoint,movimiento,this.auth.getSignedHttpOptions()))
+    );
 
-     return this.http.post<AWSAddResponse>(endpoint,movimiento);
+     return result;
   }
 
   consultaMovimiento(id: number): Observable<MovimientoAhorro[]>{
@@ -64,28 +69,28 @@ export class MovimientosService implements IMovimientosService {
   }
 
   consultaMovimientoAmazon(cuenta: string, movimiento: number): Observable<AWSResponse> {      
-    var endpoint = `${environment.getSingleAWS}PROD/${cuenta}/${movimiento}`;
-
-    console.warn('consultando el endpoint ',endpoint);
+    var endpoint = `${environment.getSingleAWS}PROD/${cuenta}/${movimiento}`;    
 
     return this.http.get<AWSResponse>(endpoint);
   }
 
   editaMovimiento(movimiento: MovimientoAhorro): Observable<Object>{
-    console.log('service: editaMovimiento');
-    console.log(movimiento);
 
     return this.http.post(this.url + '/api/edit',movimiento);
 
   }
-
-  consultaAmazon(): Observable<AWSResponse>{    
+  
+  consultaAmazon(): Observable<AWSResponse> {    
+    
     const api = environment.getAllAWS;
     
-    console.warn('AWS calling endpoint: ', api);
-    
-    const response = this.http.get<AWSResponse>(api);    
-    return response;
+    const $token = this.auth.getJWTToken({Issuer:"http://angular-app.com", SecretKey:"151515599211D2345"});
+
+    const result = $token.pipe(
+      mergeMap(token => this.http.get<AWSResponse>(api, this.auth.getSignedHttpOptions()))
+    );
+      
+    return result;
   }
 
   setMovimientosCache(movs: MovimientoAhorro[]){

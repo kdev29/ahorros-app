@@ -16,8 +16,7 @@ export class MovimientosResolver implements Resolve<MovimientosResolved> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<MovimientosResolved> {   
 
     if(this.movimientosService.movimientos)
-    {
-      console.warn('hay en cache');
+    {      
       return of({movimientos: this.movimientosService.movimientos});
     }
 
